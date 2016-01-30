@@ -19,6 +19,7 @@ func TestCompare(t *testing.T) {
 		{nil, []int{2, 1}, false},
 		{[]bool{true, false}, []bool{true, false}, true},
 		{[]int{1, 0}, []bool{true, false}, false},
+		{true, []bool{true, false}, false},
 	}
 	for _, test := range tests {
 		actual := Compare(test.s1, test.s2)
