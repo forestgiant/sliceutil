@@ -1,12 +1,16 @@
 package sliceutil
 
-import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
-)
+import "testing"
 
 func TestContains(t *testing.T) {
+	// create a test struct
+	type testStruct struct {
+		Name string
+	}
+
+	// used to test pointer comparison
+	testStructPointer := &testStruct{"two"}
+
 	var tests = []struct {
 		s      interface{}
 		e      interface{}
@@ -20,11 +24,16 @@ func TestContains(t *testing.T) {
 		{[]int{1, 2, 3, 4}, 12, false},
 		{[]bool{true}, true, true},
 		{[]bool{false}, true, false},
+		{[]bool{false}, true, false},
+		{[]testStruct{testStruct{"one"}, testStruct{"two"}}, testStruct{"one"}, true},
+		{[]*testStruct{&testStruct{"one"}, testStructPointer}, testStructPointer, true},
 	}
 
 	for _, test := range tests {
 		actual := Contains(test.s, test.e)
-		assert.Equal(t, test.result, actual)
+		if actual != test.result {
+			t.Errorf("(%q,%q) = %v; want %v", test.s, test.e, actual, test.result)
+		}
 	}
 
 }
