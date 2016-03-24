@@ -40,6 +40,55 @@ func Compare(s1, s2 interface{}) bool {
 	return true
 }
 
+// OrderedCompare will check if two slices are equal, taking order into consideration.
+func OrderedCompare(s1, s2 interface{}) bool {
+	//If both are nil, they are equal
+	if s1 == nil && s2 == nil {
+		return true
+	}
+
+	//If only one is nil, they are not equal (!= represents XOR)
+	if (s1 == nil) != (s2 == nil) {
+		return false
+	}
+
+	// Convert slices to correct type
+	slice1 := convertSliceToInterface(s1)
+	slice2 := convertSliceToInterface(s2)
+
+	//If both are nil, they are equal
+	if slice1 == nil || slice2 == nil {
+		return false
+	}
+
+	//If the lengths are different, the slices are not equal
+	if len(slice1) != len(slice2) {
+		return false
+	}
+
+	//Loop through and compare the slices at each index
+	for i := 0; i < len(slice1); i++ {
+		if slice1[i] != slice2[i] {
+			return false
+		}
+	}
+
+	//If nothing has failed up to this point, the slices are equal
+	return true
+}
+
+// Contains checks if a slice contains an element
+func Contains(s interface{}, e interface{}) bool {
+	slice := convertSliceToInterface(s)
+
+	for _, a := range slice {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
 // convertSliceToInterface takes a slice passed in as an interface{}
 // then converts the slice to a slice of interfaces
 func convertSliceToInterface(s interface{}) (slice []interface{}) {
