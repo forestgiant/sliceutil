@@ -20,19 +20,21 @@ s1 := []string{"string1", "string2"}
 s2 := []string{"string1", "string2"}
 element := "string2"
 
-// Set Semantic Version
+// Compare if the two slices are equal
 if sliceutil.Compare(s1, s2) {
   fmt.Println("Slices are equal!")
 } else {
   fmt.Println("Slices aren't equal.")
 }
 
+// Compare if the two slices are equal and are in the same order
 if sliceutil.OrderedCompare(s1, s2) {
   fmt.Println("Slices are equal, considering the order of the elements!")
 } else {
   fmt.Println("Slices aren't equal, considering the order of the elements.")
 }
 
+// Check if a slice contains an element
 if sliceutil.Contains(s1, element) {
   fmt.Println("Slice contains the element", element)
 } else {
