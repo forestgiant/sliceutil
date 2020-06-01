@@ -10,8 +10,6 @@ go get -u github.com/forestgiant/sliceutil
 
 ### Usage
 ```go
-import "github.com/forestgiant/sliceutil"
-
 s1 := []string{"string1", "string2"}
 s2 := []string{"string1", "string2"}
 
@@ -49,4 +47,4 @@ OrderedCompare will check if two slices are equal, taking the order of the eleme
 Contains checks if a slice contains an element
 
 # License
-[BSD 2-Clause](LICENCE)
+[BSD 2-Clause](LICENSE)
