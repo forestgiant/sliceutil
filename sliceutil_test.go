@@ -1,14 +1,18 @@
-package sliceutil
+package sliceutil_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/forestgiant/sliceutil"
+)
 
 func TestContains(t *testing.T) {
-	// create a test struct
+	// Create a test struct
 	type testStruct struct {
 		Name string
 	}
 
-	// used to test pointer comparison
+	// Used to test pointer comparison
 	testStructPointer := &testStruct{"two"}
 
 	var tests = []struct {
@@ -25,17 +29,16 @@ func TestContains(t *testing.T) {
 		{[]bool{true}, true, true},
 		{[]bool{false}, true, false},
 		{[]bool{false}, true, false},
-		{[]testStruct{testStruct{"one"}, testStruct{"two"}}, testStruct{"one"}, true},
-		{[]*testStruct{&testStruct{"one"}, testStructPointer}, testStructPointer, true},
+		{[]testStruct{{"one"}, {"two"}}, testStruct{"one"}, true},
+		{[]*testStruct{{"one"}, testStructPointer}, testStructPointer, true},
 	}
 
 	for _, test := range tests {
-		actual := Contains(test.s, test.e)
+		actual := sliceutil.Contains(test.s, test.e)
 		if actual != test.result {
 			t.Errorf("(%q,%q) = %v; want %v", test.s, test.e, actual, test.result)
 		}
 	}
-
 }
 
 func TestCompare(t *testing.T) {
@@ -57,8 +60,9 @@ func TestCompare(t *testing.T) {
 		{[]int{1, 0}, []bool{true, false}, false},
 		{true, []bool{true, false}, false},
 	}
+
 	for _, test := range tests {
-		actual := Compare(test.s1, test.s2)
+		actual := sliceutil.Compare(test.s1, test.s2)
 		if actual != test.result {
 			t.Errorf("(%q,%q) = %v; want %v", test.s1, test.s2, actual, test.result)
 		}
@@ -88,7 +92,7 @@ func TestOrderedCompare(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		actual := OrderedCompare(test.s1, test.s2)
+		actual := sliceutil.OrderedCompare(test.s1, test.s2)
 		if actual != test.result {
 			t.Errorf("(%q,%q) = %v; want %v", test.s1, test.s2, actual, test.result)
 		}
