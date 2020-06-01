@@ -1,23 +1,20 @@
-#sliceutil
+## Overview
 Utility package to help with slices.
 
-## Install
-`go get -u github.com/forestgiant/sliceutil`
+## 🚀 Quick start
 
-## Functions
-### Compare
-Compare will check if two slices are equal even if they aren't in the same order.
-### OrderedCompare
-OrderedCompare will check if two slices are equal, taking the order of the elements into consideration.
-### Contains
-Contains checks if a slice contains an element
-
-
-## Usage
+### Installation
+```sh
+go get -u github.com/forestgiant/sliceutil
 ```
+
+### Usage
+```go
 import "github.com/forestgiant/sliceutil"
+
 s1 := []string{"string1", "string2"}
 s2 := []string{"string1", "string2"}
+
 element := "string2"
 
 // Compare if the two slices are equal
@@ -41,3 +38,15 @@ if sliceutil.Contains(s1, element) {
   fmt.Println("Slice does not contain the element", element)
 }
 ```
+
+## Features
+
+### Compare
+Compare will check if two slices are equal even if they aren't in the same order.
+### OrderedCompare
+OrderedCompare will check if two slices are equal, taking the order of the elements into consideration.
+### Contains
+Contains checks if a slice contains an element
+
+# License
+[BSD 2-Clause](LICENCE)
